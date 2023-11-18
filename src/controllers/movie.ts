@@ -10,7 +10,7 @@ export async function getMovies(req: Request, res: Response) {
 export async function getMoviesByGenre(req: Request<{ genreName: String }>, res: Response) {
   const { genreName } = req.params;
 
-  return res.json(await Movie.find({ genre: genreName }));
+  return res.status(200).json(await Movie.find({ genre: genreName }));
 }
 
 export async function getMovieById(req: Request<{ id: String }>, res: Response) {
