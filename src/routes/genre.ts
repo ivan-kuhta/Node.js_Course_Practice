@@ -2,6 +2,8 @@ import {
   Router
 } from "express";
 import { GenreController } from "../controllers";
+import { GenreMiddlewares, validationId } from "../middlewares";
+import { checkExistGenre } from "../middlewares/genre";
 
 const router = Router();
 
@@ -88,7 +90,7 @@ router.get('/', GenreController.getGenres);
  *                type: string
  *                example: Not Found
  */
-router.get('/:id', GenreController.getGenreById);
+router.get('/:id', validationId, checkExistGenre, GenreController.getGenreById);
 
 /**
  * @swagger
@@ -120,7 +122,7 @@ router.get('/:id', GenreController.getGenreById);
  *              schema:
  *                type: string
  */
-router.post('/', GenreController.createGenre);
+router.post('/', GenreMiddlewares.validationGenre, GenreController.createGenre);
 
 /**
  * @swagger
@@ -166,7 +168,7 @@ router.post('/', GenreController.createGenre);
  *                type: string
  *                example: Not Found
  */
-router.put('/:id', GenreController.updateGenre);
+router.put('/:id', validationId, GenreMiddlewares.checkExistGenre, GenreMiddlewares.validationGenre, GenreController.updateGenre);
 
 /**
  * @swagger
@@ -205,6 +207,6 @@ router.put('/:id', GenreController.updateGenre);
  *                type: string
  *                example: Not Found
  */
-router.delete('/:id', GenreController.deleteGenre);
+router.delete('/:id', validationId, GenreMiddlewares.checkExistGenre, GenreController.deleteGenre);
 
 export default router;
