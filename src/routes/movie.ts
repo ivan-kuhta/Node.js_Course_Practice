@@ -2,6 +2,7 @@ import {
   Router
 } from "express";
 import { MovieController } from "../controllers";
+import { MovieMiddlewares, validationId } from "../middlewares";
 
 const router = Router();
 
@@ -121,7 +122,7 @@ router.get('/genre/:genreName', MovieController.getMoviesByGenre);
  *                type: string
  *                example: Not Found
  */
-router.get('/:id', MovieController.getMovieById);
+router.get('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieController.getMovieById);
 
 /**
  * @swagger
@@ -153,7 +154,7 @@ router.get('/:id', MovieController.getMovieById);
  *              schema:
  *                type: string
  */
-router.post('/', MovieController.createMovie);
+router.post('/', MovieMiddlewares.validationMovie, MovieController.createMovie);
 
 
 /**
@@ -200,7 +201,7 @@ router.post('/', MovieController.createMovie);
  *                type: string
  *                example: Not Found
  */
-router.put('/:id', MovieController.updateMovie);
+router.put('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieMiddlewares.validationMovie, MovieController.updateMovie);
 
 
 /**
@@ -240,6 +241,6 @@ router.put('/:id', MovieController.updateMovie);
  *                type: string
  *                example: Not Found
  */
-router.delete('/:id', MovieController.deleteMovie);
+router.delete('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieController.deleteMovie);
 
 export default router;
