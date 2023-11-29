@@ -1,2 +1,2 @@
-export { default as IMovie } from './movie';
-export { default as IGenre } from './genre';
+export type { default as IMovie } from './movie'
+export type { default as IGenre } from './genre'

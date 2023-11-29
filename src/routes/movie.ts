@@ -1,11 +1,10 @@
 import {
   Router
-} from "express";
-import { MovieController } from "../controllers";
-import { MovieMiddlewares, validationId } from "../middlewares";
+} from 'express'
+import { MovieController } from '../controllers'
+import { MovieMiddlewares, validationId } from '../middlewares'
 
-const router = Router();
-
+const router = Router()
 
 /**
  * @swagger
@@ -39,23 +38,23 @@ const router = Router();
  *            items:
  *              type: string
  * /movies:
- *    get: 
+ *    get:
  *      summary: Get a list of movies
  *      tags:
  *        - movie
- *      responses: 
- *        200: 
+ *      responses:
+ *        200:
  *          description: OK
  *          content:
  *            application/json:
- *             schema: 
+ *             schema:
  *               type: array
  *               items:
  *                  allOf:
  *                    - $ref: '#/components/schemas/Movie'
  *                    - $ref: '#/components/schemas/Document'
  */
-router.get('/', MovieController.getMovies);
+router.get('/', MovieController.getMovies)
 
 /**
  * @swagger
@@ -76,14 +75,14 @@ router.get('/', MovieController.getMovies);
  *         description: OK
  *         content:
  *           application/json:
- *            schema: 
+ *            schema:
  *              type: array
  *              items:
  *                 allOf:
  *                   - $ref: '#/components/schemas/Movie'
  *                   - $ref: '#/components/schemas/Document'
  */
-router.get('/genre/:genreName', MovieController.getMoviesByGenre);
+router.get('/genre/:genreName', MovieController.getMoviesByGenre)
 
 /**
  * @swagger
@@ -122,7 +121,7 @@ router.get('/genre/:genreName', MovieController.getMoviesByGenre);
  *                type: string
  *                example: Not Found
  */
-router.get('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieController.getMovieById);
+router.get('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieController.getMovieById)
 
 /**
  * @swagger
@@ -154,8 +153,7 @@ router.get('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieControll
  *              schema:
  *                type: string
  */
-router.post('/', MovieMiddlewares.validationMovie, MovieController.createMovie);
-
+router.post('/', MovieMiddlewares.validationMovie, MovieController.createMovie)
 
 /**
  * @swagger
@@ -201,8 +199,7 @@ router.post('/', MovieMiddlewares.validationMovie, MovieController.createMovie);
  *                type: string
  *                example: Not Found
  */
-router.put('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieMiddlewares.validationMovie, MovieController.updateMovie);
-
+router.put('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieMiddlewares.validationMovie, MovieController.updateMovie)
 
 /**
  * @swagger
@@ -241,6 +238,6 @@ router.put('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieMiddlewa
  *                type: string
  *                example: Not Found
  */
-router.delete('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieController.deleteMovie);
+router.delete('/:id', validationId, MovieMiddlewares.checkExistMovie, MovieController.deleteMovie)
 
-export default router;
+export default router

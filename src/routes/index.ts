@@ -1,28 +1,27 @@
 import {
-  Router, Request, Response
-} from "express";
+  Router, type Request, type Response
+} from 'express'
 
-import genre from './genre';
-import movie from './movie';
+import genre from './genre'
+import movie from './movie'
 
-const router = Router();
-
+const router = Router()
 
 /**
  * @swagger
  * /health-check:
- *    get: 
+ *    get:
  *      summary: Get server status
  *      tags:
  *        - connection
  *      description: Get a message that the server is running
  *      parametrs: none
- *      responses: 
- *        200: 
+ *      responses:
+ *        200:
  *          description: OK
  *          content:
  *            application/json:
- *             schema: 
+ *             schema:
  *               type: string
  *               example: The server is running
  */
@@ -30,7 +29,7 @@ router.get('/health-check', (req: Request, res: Response) => {
   res.json('The server is running')
 })
 
-router.use('/movies', movie);
-router.use('/genres', genre);
+router.use('/movies', movie)
+router.use('/genres', genre)
 
-export default router;
+export default router

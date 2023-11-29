@@ -1,4 +1,3 @@
 export default interface IGenre {
-  name: String
+  name: string
 }
-

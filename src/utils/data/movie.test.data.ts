@@ -1,4 +1,4 @@
-import { IMovie } from "../../interfaces";
+import { type IMovie } from '../../interfaces'
 
 export const correctMovie: IMovie = {
   name: 'New Movie',
@@ -7,7 +7,7 @@ export const correctMovie: IMovie = {
   genre: [
     'Genre 1'
   ]
-};
+}
 
 export const updateMovie: IMovie = {
   name: 'New Movie update',
@@ -20,10 +20,10 @@ export const updateMovie: IMovie = {
 
 export const incorrectMovie = {
   other_props: 'New Movie'
-};
+}
 
-export const genreName = 'Genre 1';
+export const genreName = 'Genre 1'
 
-export const inccorectID = 'asfas';
+export const inccorectID = 'asfas'
 
-export const notFoundID = '555a4b7fc1a3b1b152a49674';
+export const notFoundID = '555a4b7fc1a3b1b152a49674'
