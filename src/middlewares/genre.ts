@@ -1,19 +1,19 @@
-import { NextFunction, Request, Response } from "express";
-import { Genre } from "../models";
-import { IGenre } from "../interfaces";
+import { type NextFunction, type Request, type Response } from 'express'
+import { Genre } from '../models'
+import { type IGenre } from '../interfaces'
 
-export function validationGenre({ body }: Request<{}, {}, IGenre>, res: Response, next: NextFunction) {
-  const validation = new Genre(body).validateSync();
+export function validationGenre({ body }: Request<{}, {}, IGenre>, res: Response, next: NextFunction): Response | undefined {
+  const validation = new Genre(body).validateSync()
 
-  if (validation) return res.status(400).json(validation.message);
+  if (validation !== null) return res.status(400).json(validation.message)
 
-  return next();
+  next()
 }
 
-export async function checkExistGenre({ params: { id } }: Request<{ id: String }>, res: Response, next: NextFunction) {
-  const genre = await Genre.exists({ _id: id });
+export async function checkExistGenre({ params: { id } }: Request<{ id: string }>, res: Response, next: NextFunction): Promise<Response | undefined> {
+  const genre = await Genre.exists({ _id: id })
 
-  if (!genre) return res.status(404).json('Not found')
+  if (genre === null) return res.status(404).json('Not found')
 
-  return next();
+  next()
 }

@@ -1,11 +1,11 @@
 import {
   Router
-} from "express";
-import { GenreController } from "../controllers";
-import { GenreMiddlewares, validationId } from "../middlewares";
-import { checkExistGenre } from "../middlewares/genre";
+} from 'express'
+import { GenreController } from '../controllers'
+import { GenreMiddlewares, validationId } from '../middlewares'
+import { checkExistGenre } from '../middlewares/genre'
 
-const router = Router();
+const router = Router()
 
 /**
  * @swagger
@@ -35,23 +35,23 @@ const router = Router();
  *           description: The genre's name.
  *           example: Genre's name
  * /genres:
- *    get: 
+ *    get:
  *      summary: Get a list of genres
  *      tags:
  *        - genre
- *      responses: 
- *        200: 
+ *      responses:
+ *        200:
  *          description: OK
  *          content:
  *            application/json:
- *             schema: 
+ *             schema:
  *               type: array
  *               items:
  *                  allOf:
  *                    - $ref: '#/components/schemas/Genre'
  *                    - $ref: '#/components/schemas/Document'
  */
-router.get('/', GenreController.getGenres);
+router.get('/', GenreController.getGenres)
 
 /**
  * @swagger
@@ -90,7 +90,7 @@ router.get('/', GenreController.getGenres);
  *                type: string
  *                example: Not Found
  */
-router.get('/:id', validationId, checkExistGenre, GenreController.getGenreById);
+router.get('/:id', validationId, checkExistGenre, GenreController.getGenreById)
 
 /**
  * @swagger
@@ -122,7 +122,7 @@ router.get('/:id', validationId, checkExistGenre, GenreController.getGenreById);
  *              schema:
  *                type: string
  */
-router.post('/', GenreMiddlewares.validationGenre, GenreController.createGenre);
+router.post('/', GenreMiddlewares.validationGenre, GenreController.createGenre)
 
 /**
  * @swagger
@@ -168,7 +168,7 @@ router.post('/', GenreMiddlewares.validationGenre, GenreController.createGenre);
  *                type: string
  *                example: Not Found
  */
-router.put('/:id', validationId, GenreMiddlewares.checkExistGenre, GenreMiddlewares.validationGenre, GenreController.updateGenre);
+router.put('/:id', validationId, GenreMiddlewares.checkExistGenre, GenreMiddlewares.validationGenre, GenreController.updateGenre)
 
 /**
  * @swagger
@@ -207,6 +207,6 @@ router.put('/:id', validationId, GenreMiddlewares.checkExistGenre, GenreMiddlewa
  *                type: string
  *                example: Not Found
  */
-router.delete('/:id', validationId, GenreMiddlewares.checkExistGenre, GenreController.deleteGenre);
+router.delete('/:id', validationId, GenreMiddlewares.checkExistGenre, GenreController.deleteGenre)
 
-export default router;
+export default router

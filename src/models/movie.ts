@@ -1,5 +1,5 @@
-import { Schema, model } from 'mongoose';
-import { IMovie } from '../interfaces';
+import { Schema, model } from 'mongoose'
+import { type IMovie } from '../interfaces'
 
 const schema = new Schema<IMovie>({
   name: {
@@ -18,6 +18,6 @@ const schema = new Schema<IMovie>({
     type: [String],
     required: true
   }
-});
+})
 
-export default model<IMovie>('Movie', schema);
+export default model<IMovie>('Movie', schema)
