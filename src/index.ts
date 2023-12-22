@@ -1,21 +1,19 @@
 import express, { type Express } from 'express'
+import { config } from 'dotenv'
 
 import router from './routes'
 import swagger from './swagger'
-import { connection } from './mongodb'
+
+if (process.env.NODE_ENV !== 'production') {
+  config()
+}
 
 const app: Express = express()
-
-const hostname: string = '127.0.0.1'
-const port: number = 3000
-
-app.use(express.json())
 
 app.use(swagger)
 
 app.use(router)
 
-app.listen(port, async () => {
-  await connection()
-  console.log(`Server is running on http://${hostname}:${port}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on http://${process.env.HOST}:${process.env.PORT}`)
 })
