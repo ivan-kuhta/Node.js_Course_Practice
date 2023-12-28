@@ -1,12 +1,12 @@
-import express, { Express } from 'express';
+import express, { type Express } from 'express'
 
-import { HOST, PORT } from './constants';
-import router from './routes';
-import swagger from './swagger';
+import { HOST, PORT } from './constants'
+import router from './routes'
+import swagger from './swagger'
 
-const app: Express = express();
+const app: Express = express()
 
-app.use(swagger);
+app.use(swagger)
 
 app.use(router)
 
