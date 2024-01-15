@@ -7,7 +7,7 @@ export async function getMovies(req: Request, res: Response): Promise<Response> 
 }
 
 export async function getMoviesByGenre({ params: { genreName } }: Request<{ genreName: string }>, res: Response): Promise<Response> {
-  return res.json(await Movie.find({ genre: genreName }))
+  return res.status(200).json(await Movie.find({ genre: genreName }))
 }
 
 export async function getMovieById({ params: { id } }: Request<{ id: string }>, res: Response): Promise<Response> {
